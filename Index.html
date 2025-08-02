@@ -41,4 +41,35 @@
  	  .bindPopup('Magdalena Contreras');
 </script>
 </body>
+
+  // Define la capa vacia para las alcaldías 
+  var alcaldiasLayer = L.geoJSON(null, {
+   style: {
+     color: 'Red',
+     weigth: 5,
+     fillOpacity: 0.1
+   },
+   onEachFeature: funtion (feature, layer) {
+    if (feature,propierties && feature.properties,NOMGEO){
+      layer.bindPopup('Alcaldía: '+ feature.properties.NOMGEO);
+    }
+   }
+  });
+
+ // cargar el archivo GeoJSON
+ fetch('alcaldias.geojson')
+   .then(response => response.json())
+   .then(datad => {
+     alcaldiasLayer.addData(data);
+  });
+
+
+// Agregar control de capas para encender/apagar
+var overlayMaps = {
+};
+L.control,layer(null, overLayerMaps),addTo(map);
+</script>
+
+</body>
 </html>
+
